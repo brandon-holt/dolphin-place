@@ -30,13 +30,6 @@ public class UIMenu : MonoBehaviour
         versionText.text = "Version " + Application.version;
 
         ResetMenu();
-
-#if LIMITLESS_EXISTS
-        if (volume.profile.TryGet<LimitlessGlitch17>(out LimitlessGlitch17 g17))
-        {
-            //g17.strength.Override(.5f);
-        }
-#endif
     }
 
     public void ResetMenu()
@@ -110,15 +103,29 @@ public class UIMenu : MonoBehaviour
         return "Dolphin" + Random.Range(0, 9999).ToString();
     }
 
-    public void LoadGameCanvas()
+    public void LoadGameCanvas(bool transitionFinished = false)
     {
+        if (!transitionFinished)
+        {
+            StartCoroutine(Transition(LoadGameCanvas));
+
+            return;
+        }
+
         menuCanvas.SetActive(false);
 
         gameCanvas.SetActive(true);
     }
 
-    public void BackToMenu()
+    public void BackToMenu(bool transitionFinished = false)
     {
+        if (!transitionFinished)
+        {
+            StartCoroutine(Transition(BackToMenu));
+
+            return;
+        }
+
         if (localParameters.localDolphin != null && dolphinDatabase != null)
             dolphinDatabase.UploadDolphinScore(localParameters.localDolphin);
 
@@ -132,9 +139,48 @@ public class UIMenu : MonoBehaviour
         if (localParameters.menuDolphin == null) Instantiate(dolphinParameters.dolphinPreafab);
     }
 
-    private IEnumerator Transition()
+    private IEnumerator Transition(System.Action<bool> callback)
     {
+        float speed = 0f; float value = 0f;
+#if LIMITLESS_EXISTS
+        if (volume.profile.TryGet<LimitlessGlitch17>(out LimitlessGlitch17 g17))
+        {
+            g17.enable.Override(true);
+
+            value = g17.strength.min;
+
+            speed = 2 * (g17.strength.max - value);
+
+            while (value < g17.strength.max)
+            {
+                value += Time.deltaTime * speed;
+
+                g17.strength.Override(value);
+
+                yield return null;
+            }
+        }
+#endif
+
         yield return null;
+
+        callback(true);
+
+#if LIMITLESS_EXISTS
+        if (g17 != null)
+        {
+            while (value > g17.strength.min)
+            {
+                value -= Time.deltaTime * speed;
+
+                g17.strength.Override(value);
+
+                yield return null;
+            }
+
+            g17.enable.Override(false);
+        }
+#endif
     }
 
     public void DownloadMacPlayer()
