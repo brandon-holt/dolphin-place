@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815eb2391956e4a77b0c694e8f0c8b01, type: 3}
+  m_Name: DolphinSkins
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: 70f825e37dda94c3492ae75f9c0abc3f, type: 2}
+  - {fileID: 2100000, guid: 4df4e879432eb41728cbba0550e6d3aa, type: 2}
