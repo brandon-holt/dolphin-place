@@ -5,6 +5,7 @@ public class GameEventListener : MonoBehaviour
 {
     public GameEvent Event;
     public UnityEvent Response;
+    public UnityEvent<float> FloatResponse;
 
     private void OnEnable()
     {
@@ -19,5 +20,10 @@ public class GameEventListener : MonoBehaviour
     public void OnEventRaised()
     {
         Response.Invoke();
+    }
+
+    public void OnEventRaised(float value)
+    {
+        FloatResponse.Invoke(value);
     }
 }

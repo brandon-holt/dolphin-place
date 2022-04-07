@@ -44,7 +44,8 @@ public class LocalCamera : MonoBehaviour
 
         Vector3 side = localParameters.localDolphin.transform.rotation * localParameters.localDolphin.sideVector;
 
-        newPosition = localParameters.localDolphin.transform.position + localParameters.cameraOffset.x * side;
+        newPosition = localParameters.localDolphin.transform.position + localParameters.cameraOffset.x * side
+        + localParameters.cameraOffset.y * up;
 
         float distanceToPlanet = (newPosition - localParameters.localDolphin.planet.transform.position).magnitude;
 
@@ -65,7 +66,8 @@ public class LocalCamera : MonoBehaviour
 
         Vector3 behind = Vector3.Cross(up, localParameters.localDolphin.transform.rotation * localParameters.localDolphin.sideVector).normalized;
 
-        newPosition = localParameters.localDolphin.transform.position + localParameters.cameraOffset.x * behind;
+        newPosition = localParameters.localDolphin.transform.position + localParameters.cameraOffset.x * behind
+        + localParameters.cameraOffset.y * up;
 
         float distanceToPlanet = (newPosition - localParameters.localDolphin.planet.transform.position).magnitude;
 

@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: 1
   setGameModeEvent: {fileID: 11400000, guid: 7bcadfe4f7cc14552bed056533faf86f, type: 2}
+  setLocalDolphinEvent: {fileID: 11400000, guid: 97ff3598228c64a91be7236b22625880, type: 2}
   controlModes: 0
   localDolphin: {fileID: 0}
   menuDolphin: {fileID: 0}
   cameraPositionSmoothTime: 0.1
   cameraAngleSmoothTime: 0.05
-  cameraOffset: {x: 15, y: 10}
+  cameraOffset: {x: 25, y: 5}
+  trickCameraOffset: {x: 4, y: 4, z: 4}
   menuDolphinPosition: {x: 50, y: 90.4, z: -95}
   menuDolphinCamPosition: {x: 50, y: 90, z: -100}
   nameBarOffset: 5

@@ -16,10 +16,10 @@ public class MultiplayerData : ScriptableObject
     {
         PhotonView photonView = dolphin.GetComponent<PhotonView>();
 
-        if (photonView != null && photonView.IsMine) localParameters.localDolphin = dolphin;
-        else dolphin.rb.isKinematic = true;
-
         dolphin.dolphinName = (string)photonView.InstantiationData[0];
+
+        if (photonView != null && photonView.IsMine) localParameters.SetLocalDolphin(dolphin);
+        else dolphin.rb.isKinematic = true;
 
         dolphin.SetSkin((int)photonView.InstantiationData[1]);
     }

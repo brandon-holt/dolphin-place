@@ -11,6 +11,7 @@ public class Dolphin : MonoBehaviour
     public LocalParameters localParameters;
     public MultiplayerData multiplayerData;
     public DolphinDatabase dolphinDatabase;
+    public GameEvent updateSwimMultiplierEvent;
     public MaterialList skins;
     public Rigidbody rb;
     public SkinnedMeshRenderer skinRenderer;
@@ -103,7 +104,9 @@ public class Dolphin : MonoBehaviour
     {
         lastTimeMinutesRetrieved = DateTime.Now;
 
-        swimMultiplier = 1f; rollMultiplier = 1f;
+        SetSwimMultiplier(1f);
+
+        rollMultiplier = 1f;
 
         rb.mass = dolphinParameters.mass;
 
@@ -117,7 +120,7 @@ public class Dolphin : MonoBehaviour
 
         if (localParameters.gameMode == LocalParameters.GameModes.Menu)
         {
-            localParameters.localDolphin = this;
+            localParameters.SetLocalDolphin(this);
 
             localParameters.menuDolphin = this;
 
@@ -135,7 +138,7 @@ public class Dolphin : MonoBehaviour
         {
             inputActionViewMode.performed += context => localParameters.SetViewMode(context.ReadValue<float>());
 
-            localParameters.localDolphin = this;
+            localParameters.SetLocalDolphin(this);
 
             nameBar.gameObject.SetActive(false);
 
@@ -311,7 +314,7 @@ public class Dolphin : MonoBehaviour
 
         if (Vector3.Angle(entry, velocity) < localParameters.niceEntryMaxAngle)
         {
-            swimMultiplier += localParameters.multiplierIncreaseNiceEntry;
+            SetSwimMultiplier(swimMultiplier + localParameters.multiplierIncreaseNiceEntry);
 
             rb.AddForce(-dolphinParameters.waterEntryForce * rb.velocity.normalized, ForceMode.VelocityChange);
         }
@@ -334,7 +337,7 @@ public class Dolphin : MonoBehaviour
 
     public void ResetMutliplier()
     {
-        swimMultiplier = 1f;
+        SetSwimMultiplier(1f);
 
         rb.velocity *= .1f;
     }
@@ -483,5 +486,14 @@ public class Dolphin : MonoBehaviour
             totalscore += localParameters.localDolphin.splits[i];
 
         return score;
+    }
+
+    public float GetSwimMultiplier() { return swimMultiplier; }
+
+    private void SetSwimMultiplier(float value)
+    {
+        swimMultiplier = value;
+
+        if (localParameters.localDolphin == this) updateSwimMultiplierEvent.Raise(value);
     }
 }
