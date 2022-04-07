@@ -70,7 +70,7 @@ MonoBehaviour:
     m_Value: 1
   amount:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 0
   speed:
     m_OverrideState: 0
     m_Value: 1
@@ -162,54 +162,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: -222305490510772558}
-  - {fileID: 1642751700399065561}
   - {fileID: -3043096309746604172}
   - {fileID: 8625943465830523567}
-  - {fileID: 1640629430207330361}
---- !u!114 &1640629430207330361
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad8a999b3b34b46f183ff82f5a1e4a39, type: 3}
-  m_Name: Phosphor
-  m_EditorClassIdentifier: 
-  active: 1
-  enable:
-    m_OverrideState: 1
-    m_Value: 1
-  width:
-    m_OverrideState: 1
-    m_Value: 16
-  fade:
-    m_OverrideState: 1
-    m_Value: 0.15
-  mask:
-    m_OverrideState: 1
-    m_Value: {fileID: 2800000, guid: c171d861cb5bf75408826b8f346946bb, type: 3}
-  maskChannel:
-    m_OverrideState: 1
-    m_Value: 0
---- !u!114 &1642751700399065561
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
-  m_Name: ChromaticAberration
-  m_EditorClassIdentifier: 
-  active: 1
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0.2
+  - {fileID: 9027671949459021892}
+  - {fileID: 8939938494788550607}
 --- !u!114 &3605293628002723366
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -278,3 +234,105 @@ MonoBehaviour:
   mask:
     m_OverrideState: 0
     m_Value: {fileID: 0}
+--- !u!114 &8939938494788550607
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4388191585ea44bb892b7a3954c42607, type: 3}
+  m_Name: Bleed
+  m_EditorClassIdentifier: 
+  active: 1
+  enable:
+    m_OverrideState: 1
+    m_Value: 1
+  bleedMode:
+    m_OverrideState: 1
+    m_Value: 0
+  bleedAmount:
+    m_OverrideState: 1
+    m_Value: 1.5
+  bleedDebug:
+    m_OverrideState: 0
+    m_Value: 0
+  mask:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+  maskChannel:
+    m_OverrideState: 0
+    m_Value: 0
+  bleedModeIndex: 0
+--- !u!114 &9027671949459021892
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ece09b57fde18445b241e21a99082d4, type: 3}
+  m_Name: VHSEffect
+  m_EditorClassIdentifier: 
+  active: 1
+  enable:
+    m_OverrideState: 1
+    m_Value: 1
+  colorOffset:
+    m_OverrideState: 1
+    m_Value: 4
+  colorOffsetAngle:
+    m_OverrideState: 1
+    m_Value: 0.71
+  verticalOffsetFrequency:
+    m_OverrideState: 1
+    m_Value: 0
+  verticalOffset:
+    m_OverrideState: 1
+    m_Value: 0
+  offsetDistortion:
+    m_OverrideState: 1
+    m_Value: 0
+  noiseTexture:
+    m_OverrideState: 1
+    m_Value: {fileID: 2800000, guid: 2718aacba26daa146bf9f7cda9911796, type: 3}
+  blendMode:
+    m_OverrideState: 1
+    m_Value: 7
+  tile:
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1}
+  _textureIntensity:
+    m_OverrideState: 1
+    m_Value: 1
+  smoothCut:
+    m_OverrideState: 1
+    m_Value: 0
+  iterations:
+    m_OverrideState: 0
+    m_Value: 21
+  smoothSize:
+    m_OverrideState: 1
+    m_Value: 0.14
+  deviation:
+    m_OverrideState: 1
+    m_Value: 0.012
+  _textureCutOff:
+    m_OverrideState: 1
+    m_Value: 0.96
+  stripes:
+    m_OverrideState: 0
+    m_Value: 0.01
+  unscaledTime:
+    m_OverrideState: 0
+    m_Value: 0
+  mask:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+  maskChannel:
+    m_OverrideState: 0
+    m_Value: 1
