@@ -16,7 +16,7 @@ Shader "_Shaders/Rainbow" {
 
 #pragma vertex vert
 #pragma fragment frag
-#include "UnityCG.cginc"
+//#include "UnityCG.cginc"
 #include "ShaderTools.cginc"
 
 		fixed _Saturation;

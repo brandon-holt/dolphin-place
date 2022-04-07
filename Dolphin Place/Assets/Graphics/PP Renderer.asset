@@ -14,20 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   Event: 550
---- !u!114 &-1706204148045479411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d5f493bd0ee2420eb6634b618413815, type: 3}
-  m_Name: NewPhosphorRLPRO
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  Event: 550
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,10 +29,9 @@ MonoBehaviour:
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
-  - {fileID: -1706204148045479411}
   - {fileID: 2661786051975437302}
   - {fileID: 3123459142543610542}
-  m_RendererFeatureMap: 0d8273015e5852e8f6db15c04f90f024ae12c2958ac1582b
+  m_RendererFeatureMap: f6db15c04f90f024ae12c2958ac1582b
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -134,10 +119,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35168bedc30ee49e08ebf6292d096794, type: 3}
+  m_Script: {fileID: 0}
   m_Name: NewGlitch1
   m_EditorClassIdentifier: 
-  Event: 300
 --- !u!114 &7186993636421936126
 MonoBehaviour:
   m_ObjectHideFlags: 0

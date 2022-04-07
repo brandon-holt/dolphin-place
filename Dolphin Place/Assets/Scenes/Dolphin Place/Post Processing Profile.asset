@@ -40,34 +40,6 @@ MonoBehaviour:
   mask:
     m_OverrideState: 0
     m_Value: {fileID: 0}
---- !u!114 &-8402451309191026645
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad8a999b3b34b46f183ff82f5a1e4a39, type: 3}
-  m_Name: Phosphor
-  m_EditorClassIdentifier: 
-  active: 1
-  enable:
-    m_OverrideState: 1
-    m_Value: 1
-  width:
-    m_OverrideState: 1
-    m_Value: 16.9
-  fade:
-    m_OverrideState: 1
-    m_Value: 0.04
-  mask:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
-  maskChannel:
-    m_OverrideState: 0
-    m_Value: 0
 --- !u!114 &-3043096309746604172
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -191,9 +163,37 @@ MonoBehaviour:
   components:
   - {fileID: -222305490510772558}
   - {fileID: 1642751700399065561}
-  - {fileID: -8402451309191026645}
   - {fileID: -3043096309746604172}
   - {fileID: 8625943465830523567}
+  - {fileID: 1640629430207330361}
+--- !u!114 &1640629430207330361
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8a999b3b34b46f183ff82f5a1e4a39, type: 3}
+  m_Name: Phosphor
+  m_EditorClassIdentifier: 
+  active: 1
+  enable:
+    m_OverrideState: 1
+    m_Value: 1
+  width:
+    m_OverrideState: 1
+    m_Value: 16
+  fade:
+    m_OverrideState: 1
+    m_Value: 0.15
+  mask:
+    m_OverrideState: 1
+    m_Value: {fileID: 2800000, guid: c171d861cb5bf75408826b8f346946bb, type: 3}
+  maskChannel:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &1642751700399065561
 MonoBehaviour:
   m_ObjectHideFlags: 3
