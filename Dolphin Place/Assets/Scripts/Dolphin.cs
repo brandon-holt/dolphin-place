@@ -11,7 +11,7 @@ public class Dolphin : MonoBehaviour
     public LocalParameters localParameters;
     public MultiplayerData multiplayerData;
     public DolphinDatabase dolphinDatabase;
-    public GameEvent updateSwimMultiplierEvent;
+    public GameEvent updateSwimMultiplierEvent, comboEnd;
     public MaterialList skins;
     public Rigidbody rb;
     public SkinnedMeshRenderer skinRenderer;
@@ -360,6 +360,8 @@ public class Dolphin : MonoBehaviour
         combo = new Combo(localParameters);
 
         timeLastComboEnd = Time.time;
+
+        if (localParameters.localDolphin == this) comboEnd.Raise();
     }
 
     private void TryTailslide()

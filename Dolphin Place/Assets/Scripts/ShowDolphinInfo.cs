@@ -38,4 +38,11 @@ public class ShowDolphinInfo : MonoBehaviour
 
         text.text += "Score: " + int.Parse(info[9]).ToString("N0");
     }
+
+    public int GetTotalScoreAtLoad()
+    {
+        if (info == null) return 0;
+
+        return int.Parse(info[7]);
+    }
 }

@@ -15,7 +15,8 @@ public class UIMenu : MonoBehaviour
     public GameObject menuCanvas, gameCanvas, loading, multiplayerOptions;
     public TMP_InputField playerNameInput, roomNameInput;
     public TextMeshProUGUI populationText, versionText;
-    public TextMeshProUGUI lastSplitsText, lastScoreText, maxSplitsText, maxScoreText, totalScoreText, comboText;
+    public TextMeshProUGUI lastSplitsText, lastScoreText, maxSplitsText, maxScoreText, comboText;
+    public LevelBar levelBar;
     public Button multiplayerButton;
     public Table leaderboard;
     public ShowDolphinInfo dolphinInfo;
@@ -30,6 +31,13 @@ public class UIMenu : MonoBehaviour
         versionText.text = "Version " + Application.version;
 
         ResetMenu();
+    }
+
+    public void GameModeSwitched()
+    {
+        if (localParameters.gameMode == LocalParameters.GameModes.Singleplayer
+        || localParameters.gameMode == LocalParameters.GameModes.Multiplayer)
+            UpdateScoresAndLevel();
     }
 
     public void ResetMenu()
@@ -59,9 +67,12 @@ public class UIMenu : MonoBehaviour
 
     private void Update()
     {
-        if (localParameters.gameMode == LocalParameters.GameModes.Menu) populationText.text = "Population: " + dolphinDatabase.numberOfDolphinsInDatabase.ToString("N0");
+        if (localParameters.gameMode == LocalParameters.GameModes.Menu)
+            populationText.text = "Population: " + dolphinDatabase.numberOfDolphinsInDatabase.ToString("N0");
 
-        if (localParameters.localDolphin != null && localParameters.gameMode != LocalParameters.GameModes.Menu) UpdateScoresAndLevel();
+        if (localParameters.localDolphin != null
+        && localParameters.gameMode != LocalParameters.GameModes.Menu)
+            comboText.text = localParameters.localDolphin.combo.GetComboString();
     }
 
     public void StartSingleplayer()
@@ -221,12 +232,16 @@ public class UIMenu : MonoBehaviour
         {
             dolphinInfo.info = null;
 
+            totalScoreAtLoad = 0;
+
             return;
         }
 
         string[] data = downloadData.Split('/');
 
         dolphinInfo.info = data;
+
+        totalScoreAtLoad = dolphinInfo.GetTotalScoreAtLoad();
 
         localParameters.menuDolphin.dolphinName = data[1];
 
@@ -235,7 +250,8 @@ public class UIMenu : MonoBehaviour
         playerNameInput.text = localParameters.menuDolphin.dolphinName;
     }
 
-    private void UpdateScoresAndLevel()
+    private int totalScoreAtLoad;
+    public void UpdateScoresAndLevel()
     {
         localParameters.localDolphin.GetScores(out int score, out List<int> scoreSplits,
         out int superscore, out List<int> superscoreSplits, out int totalscore);
@@ -256,9 +272,7 @@ public class UIMenu : MonoBehaviour
             if (i < superscoreSplits.Count - 1) maxSplitsText.text += " / ";
         }
 
-        totalScoreText.text = "Totalscore: " + totalscore.ToString("N0");
-
-        comboText.text = localParameters.localDolphin.combo.GetComboString();
+        levelBar?.UpdateLevelBar(totalScoreAtLoad + totalscore);
     }
 
     public void OpenLeaderboards()
