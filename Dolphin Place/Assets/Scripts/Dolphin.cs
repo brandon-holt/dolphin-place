@@ -31,7 +31,7 @@ public class Dolphin : MonoBehaviour
     private float swimMultiplier, rollMultiplier;
     private Vector2 input2D, input3D;
     private float twistInput;
-    private float timeLastComboEnd, timeLastWaterExit;
+    public float timeLastComboEnd, timeLastWaterExit, timeLastSplitStart;
     private readonly float comboCooldown = 1f, comboExpiration = 5f;
 
     public class Combo
@@ -88,6 +88,8 @@ public class Dolphin : MonoBehaviour
     private void NewSplit()
     {
         splits.Add(0);
+
+        timeLastSplitStart = Time.time;
     }
 
     private void UploadScores()
@@ -231,7 +233,14 @@ public class Dolphin : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        if (swimMultiplier > 1f) { if (particles.isStopped) particles.Play(); }
+        if (swimMultiplier > 1f)
+        {
+            if (particles.isStopped) particles.Play();
+
+            ParticleSystem.EmissionModule emission = particles.emission;
+
+            emission.rateOverTime = rb.velocity.magnitude;
+        }
         else if (particles.isPlaying) particles.Stop();
         ParticleSystem.MainModule main = particles.main;
         main.startSpeed = swimMultiplier;

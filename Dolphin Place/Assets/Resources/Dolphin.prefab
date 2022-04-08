@@ -128,6 +128,7 @@ MonoBehaviour:
   multiplayerData: {fileID: 11400000, guid: fbd993bc6b1f241fda2d062b53e5ca2b, type: 2}
   dolphinDatabase: {fileID: 11400000, guid: 0febcc440289a4f3ca0d89c64851f6ac, type: 2}
   updateSwimMultiplierEvent: {fileID: 11400000, guid: de975bedc2a634734bc52bf67eac6571, type: 2}
+  newSplitAddedEvent: {fileID: 11400000, guid: 98bd354983a4e46519184f424a97c548, type: 2}
   skins: {fileID: 11400000, guid: 796651cc097544b46a05fe5638fdf514, type: 2}
   rb: {fileID: 549411758888056025}
   skinRenderer: {fileID: 4074927898383730756}
