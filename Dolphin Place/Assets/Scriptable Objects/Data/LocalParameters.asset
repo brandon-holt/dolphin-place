@@ -26,7 +26,7 @@ MonoBehaviour:
   menuDolphinCamPosition: {x: 50, y: 90, z: -100}
   nameBarOffset: 5
   niceEntryMaxAngle: 45
-  multiplierIncreaseNiceEntry: 0.5
+  multiplierIncreaseNiceEntry: 1
   framesPerFlip: 40
   framesPerSideFlip: 80
   framesPerTwist: 30
