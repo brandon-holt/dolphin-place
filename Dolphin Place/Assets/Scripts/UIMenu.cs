@@ -59,9 +59,9 @@ public class UIMenu : MonoBehaviour
 
     private void Update()
     {
-        if (menuCanvas.activeSelf) populationText.text = "Population: " + dolphinDatabase.numberOfDolphinsInDatabase.ToString("N0");
+        if (localParameters.gameMode == LocalParameters.GameModes.Menu) populationText.text = "Population: " + dolphinDatabase.numberOfDolphinsInDatabase.ToString("N0");
 
-        if (localParameters.localDolphin != null && localParameters.gameMode != LocalParameters.GameModes.Menu) UpdateScore();
+        if (localParameters.localDolphin != null && localParameters.gameMode != LocalParameters.GameModes.Menu) UpdateScoresAndLevel();
     }
 
     public void StartSingleplayer()
@@ -235,13 +235,13 @@ public class UIMenu : MonoBehaviour
         playerNameInput.text = localParameters.menuDolphin.dolphinName;
     }
 
-    private void UpdateScore()
+    private void UpdateScoresAndLevel()
     {
         localParameters.localDolphin.GetScores(out int score, out List<int> scoreSplits,
         out int superscore, out List<int> superscoreSplits, out int totalscore);
 
         lastSplitsText.text = "";
-        lastScoreText.text = "Score: " + score.ToString("N0");
+        lastScoreText.text = Table.FormatNumber(score);
         for (int i = 0; i < scoreSplits.Count; i++)
         {
             lastSplitsText.text += scoreSplits[i].ToString("N0");
@@ -249,7 +249,7 @@ public class UIMenu : MonoBehaviour
         }
 
         maxSplitsText.text = "";
-        maxScoreText.text = "Superscore: " + superscore.ToString("N0");
+        maxScoreText.text = Table.FormatNumber(superscore);
         for (int i = 0; i < superscoreSplits.Count; i++)
         {
             maxSplitsText.text += superscoreSplits[i].ToString("N0");

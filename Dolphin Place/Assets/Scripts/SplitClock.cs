@@ -7,7 +7,7 @@ public class SplitClock : MonoBehaviour
 {
     public LocalParameters lp;
     public Gradient rimGradient;
-    public Image rim;
+    public Image rim, scoresRim;
     public TextMeshProUGUI splitText;
 
     private void FixedUpdate()
@@ -23,5 +23,7 @@ public class SplitClock : MonoBehaviour
         rim.fillAmount = fractionTimeLeft;
 
         rim.color = rimGradient.Evaluate(fractionTimeLeft);
+
+        scoresRim.color = rim.color;
     }
 }
