@@ -7,6 +7,7 @@ public class TrickCamera : MonoBehaviour
 {
     public LocalParameters lp;
     public TextMeshProUGUI nameText;
+    public float camSpeed;
     private Transform currentDolphin;
     private Vector3 refVel;
 
@@ -42,7 +43,7 @@ public class TrickCamera : MonoBehaviour
 
         Vector3 targetPosition = currentDolphin.position + lp.trickCameraOffset;
 
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref refVel, .1f);
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref refVel, camSpeed);
 
         transform.LookAt(currentDolphin, Vector3.up);
     }
