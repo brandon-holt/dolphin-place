@@ -12,6 +12,7 @@ public class TerrainGenerator : MonoBehaviour
     public int xSize = 100;
     public int zSize = 100;
     public Vector3 amplitude, frequency;
+    public float radius;
 
     // Start is called before the first frame update
     void OnValidate()
@@ -20,16 +21,13 @@ public class TerrainGenerator : MonoBehaviour
 
         mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
 
+        IcoSphere.Create(mesh, radius, amplitude, frequency);
+
         GetComponent<MeshFilter>().mesh = mesh;
 
-        //CreateShape();
-
-        mesh = IcoSphere.Create(mesh);
-
-        UpdateMesh();
+        //CreateShape(); UpdateMesh();
     }
 
-    public float radius;
     void CreateShape()
     {
         vertices = new Vector3[(xSize + 1) * (zSize + 1)];
@@ -73,8 +71,8 @@ public class TerrainGenerator : MonoBehaviour
     void UpdateMesh()
     {
         mesh.Clear();
-        // mesh.vertices = vertices;
-        // mesh.triangles = triangles;
+        mesh.vertices = vertices;
+        mesh.triangles = triangles;
         mesh.RecalculateBounds();
         mesh.RecalculateTangents();
         mesh.RecalculateNormals();
@@ -151,7 +149,7 @@ public static class IcoSphere
         return i;
     }
 
-    public static Mesh Create(Mesh mesh)
+    public static void Create(Mesh mesh, float radius, Vector3 amplitude, Vector3 frequency)
     {
         mesh.Clear();
         Vector3[] vertices = mesh.vertices;
@@ -160,7 +158,6 @@ public static class IcoSphere
         //int index = 0;
 
         int recursionLevel = 3;
-        float radius = 1f;
 
         // create 12 vertices of a icosahedron
         float t = (1f + Mathf.Sqrt(5f)) / 2f;
@@ -232,6 +229,25 @@ public static class IcoSphere
             faces = faces2;
         }
 
+        for (int i = 0; i < vertList.Count; i++)
+        {
+            vertList[i] *= Random.Range(1f, 1.3f);
+
+            // Vector3 v = vertList[i];
+
+            // float phi = Mathf.Atan(Mathf.Sqrt(v.x * v.x + v.y * v.y) / v.z);
+
+            // float theta = Mathf.Atan2(v.y, v.x);
+
+            // float x = phi / Mathf.PI;
+
+            // float z = theta / (2 * Mathf.PI);
+
+            // vertList[i] *= 1f + .2f * (amplitude.x * Mathf.PerlinNoise(x * frequency.x, z * frequency.x)
+            //             + amplitude.y * Mathf.PerlinNoise(x * frequency.y, z * frequency.y)
+            //             + amplitude.z * Mathf.PerlinNoise(x * frequency.z, z * frequency.z));
+        }
+
         mesh.vertices = vertList.ToArray();
 
         List<int> triList = new List<int>();
@@ -255,7 +271,5 @@ public static class IcoSphere
         mesh.RecalculateTangents();
         mesh.RecalculateNormals();
         //mesh.Optimize();
-
-        return mesh;
     }
 }
