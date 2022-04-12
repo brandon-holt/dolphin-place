@@ -12,12 +12,12 @@ public class UIMenu : MonoBehaviour
     public LocalParameters localParameters;
     public DolphinDatabase dolphinDatabase;
     public DolphinParameters dolphinParameters;
-    public GameObject menuCanvas, gameCanvas, loading, multiplayerOptions;
+    public GameObject menuCanvas, gameCanvas, loading, joinButton;
     public TMP_InputField playerNameInput, roomNameInput;
     public TextMeshProUGUI populationText, versionText;
     public TextMeshProUGUI lastSplitsText, lastScoreText, maxSplitsText, maxScoreText, comboText;
     public LevelBar levelBar;
-    public Button multiplayerButton;
+    public Button singlePlayerButton, multiplayerButton;
     public Table leaderboard;
     public ShowDolphinInfo dolphinInfo;
     public Volume volume;
@@ -48,7 +48,9 @@ public class UIMenu : MonoBehaviour
 
         loading.SetActive(false);
 
-        multiplayerOptions.SetActive(false);
+        roomNameInput.gameObject.SetActive(false);
+
+        joinButton.SetActive(false);
 
         playerNameInput.text = "";
 
@@ -92,12 +94,18 @@ public class UIMenu : MonoBehaviour
 
         multiplayerData.ConnectToMaster();
 
+        singlePlayerButton.gameObject.SetActive(false);
+
+        multiplayerButton.gameObject.SetActive(false);
+
         loading.SetActive(true);
     }
 
     public void Join()
     {
-        multiplayerOptions.SetActive(false);
+        roomNameInput.gameObject.SetActive(false);
+
+        joinButton.SetActive(false);
 
         playerNameInput.interactable = false;
 
