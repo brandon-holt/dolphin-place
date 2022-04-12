@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 09a74216c71474178aef77f827cfb623
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - canvas: {instanceID: 0}
+  - hoverText: {instanceID: 0}
+  - hoverTextPrefab: {fileID: 2099274269923268870, guid: 2b25badd1839349d3a029707ff4970d8, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

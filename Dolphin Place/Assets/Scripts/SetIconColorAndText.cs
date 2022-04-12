@@ -9,7 +9,7 @@ public class SetIconColorAndText : MonoBehaviour
     public Gradient gradient;
     public float min, max;
     public string textFormat;
-    public enum Variable { Null, LocalDolphinSpeed }
+    public enum Variable { Null, LocalDolphinSpeed, SwimMultiplier }
     public Variable variable;
     public float variableUpdateInterval;
     private Image image;
@@ -30,7 +30,8 @@ public class SetIconColorAndText : MonoBehaviour
 
         image.color = gradient.Evaluate(normalizedValue);
 
-        text.text = value.ToString(textFormat);
+        if (variable == Variable.SwimMultiplier) text.text = Mathf.RoundToInt(value).ToString() + "x";
+        else text.text = value.ToString(textFormat);
     }
 
     private IEnumerator UpdateVariable()

@@ -31,7 +31,7 @@ public class Dolphin : MonoBehaviour
     private float swimMultiplier, rollMultiplier;
     private Vector2 input2D, input3D;
     private float twistInput;
-    public float timeLastComboEnd, timeLastWaterExit, timeLastSplitStart;
+    public float timeLastComboEnd, timeLastWaterEntry, timeLastSplitStart;
     private readonly float comboCooldown = 1f, comboExpiration = 5f;
 
     public class Combo
@@ -274,25 +274,6 @@ public class Dolphin : MonoBehaviour
         }
     }
 
-    private void UpdateCombo()
-    {
-        if (Time.time - timeLastComboEnd < comboCooldown) return;
-        if (inWater && !sliding && Time.time - timeLastWaterExit > comboExpiration) ResetCombo();
-
-        if (twistInput > 0f && sliding) combo.tailslides++;
-        if (twistInput > 0f && !sliding) combo.twists++;
-
-        if (!inWater)
-        {
-            float roll = input2D.x + input3D.y;
-            if (roll > 0f) combo.frontflips++;
-            else if (roll < 0f) combo.backflips++;
-
-            if (input3D.x > 0f) combo.rightflips++;
-            else if (input3D.x < 0f) combo.leftflips++;
-        }
-    }
-
     private void MoveDolphin()
     {
         if (inWater) rb.AddForce(swimDirection * dolphinParameters.swimSpeed * swimMultiplier, ForceMode.Impulse);
@@ -313,9 +294,50 @@ public class Dolphin : MonoBehaviour
         nameBar.rotation = Quaternion.LookRotation(forwards, updwards);
     }
 
+    private void UpdateCombo()
+    {
+        if (Time.time - timeLastComboEnd < comboCooldown) return;
+        if (inWater && !sliding && Time.time - timeLastWaterEntry > comboExpiration) ResetCombo();
+
+        if (twistInput > 0f && sliding) combo.tailslides++;
+        if (twistInput > 0f && !sliding) combo.twists++;
+
+        if (!inWater)
+        {
+            float roll = input2D.x + input3D.y;
+            if (roll > 0f) combo.frontflips++;
+            else if (roll < 0f) combo.backflips++;
+
+            if (input3D.x > 0f) combo.rightflips++;
+            else if (input3D.x < 0f) combo.leftflips++;
+        }
+    }
+
+    public void ResetCombo()
+    {
+        if (splits.Count == 0) return;
+
+        splits[splits.Count - 1] += combo.GetComboScore();
+
+        combo = new Combo(localParameters);
+
+        timeLastComboEnd = Time.time;
+
+        if (localParameters.localDolphin == this) comboEnd.Raise();
+    }
+
+    public void ResetMutliplier()
+    {
+        SetSwimMultiplier(1f);
+
+        rb.velocity *= .1f;
+    }
+
     public void WaterEntry()
     {
         inWater = true;
+
+        timeLastWaterEntry = Time.time;
 
         Vector3 entry = transform.rotation * forwardVector;
 
@@ -339,29 +361,7 @@ public class Dolphin : MonoBehaviour
     {
         inWater = false;
 
-        timeLastWaterExit = Time.time;
-
         rb.AddForce(dolphinParameters.waterExitForce * rb.velocity.normalized, ForceMode.Impulse);
-    }
-
-    public void ResetMutliplier()
-    {
-        SetSwimMultiplier(1f);
-
-        rb.velocity *= .1f;
-    }
-
-    public void ResetCombo()
-    {
-        if (splits.Count == 0) return;
-
-        splits[splits.Count - 1] += combo.GetComboScore();
-
-        combo = new Combo(localParameters);
-
-        timeLastComboEnd = Time.time;
-
-        if (localParameters.localDolphin == this) comboEnd.Raise();
     }
 
     private void TryTailslide()
@@ -412,7 +412,7 @@ public class Dolphin : MonoBehaviour
 
         if (direction == -1) transform.Rotate(sideVector, 180f);
 
-        timeLastWaterExit = Time.time; // so combo doesn't end early
+        timeLastWaterEntry = Time.time; // so combo doesn't end early
 
         sliding = false;
     }
