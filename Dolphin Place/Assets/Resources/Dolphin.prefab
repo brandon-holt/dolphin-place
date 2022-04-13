@@ -290,7 +290,7 @@ MonoBehaviour:
       m_Flags: 8
     m_Flags: 0
   timeLastComboEnd: 0
-  timeLastWaterExit: 0
+  timeLastWaterEntry: 0
   timeLastSplitStart: 0
 --- !u!114 &6088028594869942418
 MonoBehaviour:

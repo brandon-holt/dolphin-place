@@ -6,6 +6,7 @@ public class HoverText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 {
     public Canvas canvas;
     private GameObject hoverText;
+    private FollowMouse hoverTextFollowMouse;
     public GameObject hoverTextPrefab;
     public string[] displayText;
     private bool dontShowHoverText;
@@ -15,6 +16,11 @@ public class HoverText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         dontShowHoverText = !visible;
 
         if (hoverText != null && !visible) hoverText.SetActive(visible);
+    }
+
+    public void SetActive(bool active)
+    {
+        if (hoverText != null) hoverText.SetActive(active);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -31,12 +37,18 @@ public class HoverText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
             hoverText.GetComponentInChildren<TextMeshProUGUI>().text = text;
 
-            hoverText.GetComponent<FollowMouse>().canvas = canvas;
+            hoverTextFollowMouse = hoverText.GetComponent<FollowMouse>();
+
+            hoverTextFollowMouse.canvas = canvas;
+
+            hoverTextFollowMouse.SnapToMouse();
 
             hoverText.name = "Hover Text (" + gameObject.name + ")";
         }
         else
         {
+            hoverTextFollowMouse.SnapToMouse();
+
             hoverText.SetActive(true);
         }
     }

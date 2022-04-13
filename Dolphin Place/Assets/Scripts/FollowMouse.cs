@@ -11,6 +11,18 @@ public class FollowMouse : MonoBehaviour
         rt = GetComponent<RectTransform>();
     }
 
+    public void SnapToMouse()
+    {
+        if (canvas == null) return;
+
+        Vector2 pos;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform,
+        Mouse.current.position.ReadValue(), canvas.worldCamera, out pos);
+
+        transform.position = canvas.transform.TransformPoint(pos);
+    }
+
     void Update()
     {
         if (canvas == null) return;

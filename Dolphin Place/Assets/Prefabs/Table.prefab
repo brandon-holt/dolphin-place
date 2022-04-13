@@ -218,6 +218,9 @@ MonoBehaviour:
   titleText: {fileID: 1807934097867451998}
   columns: {fileID: 1807934098728502117}
   content: {fileID: 1807934099108826424}
+  rows: {fileID: 1807934097443965241}
+  snapToContent: 0
+  snapToContentMaxSize: 0
 --- !u!1 &1807934097792181271
 GameObject:
   m_ObjectHideFlags: 0

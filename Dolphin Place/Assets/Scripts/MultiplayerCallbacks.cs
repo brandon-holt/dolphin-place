@@ -22,6 +22,8 @@ public class MultiplayerCallbacks : MonoBehaviourPunCallbacks
 
             UIMenu.instance.joinButton.SetActive(true);
 
+            UIMenu.instance.resetButton.SetActive(true);
+
             UIMenu.instance.roomNameInput.gameObject.SetActive(true);
 
             UIMenu.instance.playerNameInput.interactable = true;

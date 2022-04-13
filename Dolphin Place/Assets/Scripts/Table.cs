@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -8,7 +9,15 @@ public class Table : MonoBehaviour
 {
     public TextMeshProUGUI titleText;
     public GridLayoutGroup columns, content;
+    public bool snapToContent; public float snapToContentMaxSize, snapToContentBuffer;
     private List<GameObject> destroyOnClose = new List<GameObject>();
+
+    private void Awake()
+    {
+        rt = GetComponent<RectTransform>();
+
+        headerHeight = titleText.rectTransform.sizeDelta.y + columns.GetComponent<RectTransform>().rect.height;
+    }
 
     public void SetTableInfo(string title, string data, List<int> columnsToInclude = null,
     float fontSize = 26f, float rowHeight = 40f)
@@ -50,6 +59,8 @@ public class Table : MonoBehaviour
                 if (columnsToInclude.Contains(j)) CreateText(cols[j], content.transform, fontSize);
             }
         }
+
+        if (snapToContent) StartCoroutine(SnapToContent(rows.Length - 1));
     }
 
     private void CreateText(string text, Transform parent, float fontSize, FontStyles fontStyle = FontStyles.Normal)
@@ -105,5 +116,21 @@ public class Table : MonoBehaviour
         if (number < 1e6) return number.ToString("N0");
         else if (number < 1e9) return (number / 1e6f).ToString("F3") + "M";
         else return (number / 1e9f).ToString("F3") + "B";
+    }
+
+    private RectTransform rt;
+    private float headerHeight;
+
+    private IEnumerator SnapToContent(int numRows)
+    {
+        yield return null;
+
+        //int numRows = Mathf.CeilToInt((float)content.transform.childCount / content.constraintCount);
+
+        float height = headerHeight + (numRows * content.cellSize.y) + snapToContentBuffer;
+
+        height = Mathf.Min(height, snapToContentMaxSize);
+
+        rt.sizeDelta = new Vector2(rt.sizeDelta.x, height);
     }
 }
