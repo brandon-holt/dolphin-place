@@ -18,6 +18,7 @@ public class LocalParameters : ScriptableObject
     public int framesPerFlip, framesPerSideFlip, framesPerTwist, framesPerPoint;
     public int numberOfSplits, secondsPerSplit;
     public float ringForce;
+    public float swimMultiplierFlyingThreshold;
 
     public void SetViewMode(float value)
     {

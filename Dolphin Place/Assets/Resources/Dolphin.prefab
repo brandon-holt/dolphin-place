@@ -4509,7 +4509,7 @@ ParticleSystem:
   TrailModule:
     enabled: 0
     mode: 0
-    ratio: 1
+    ratio: 0.04
     lifetime:
       serializedVersion: 2
       minMaxState: 0
@@ -4564,7 +4564,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     minVertexDistance: 0.2
-    textureMode: 0
+    textureMode: 1
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0

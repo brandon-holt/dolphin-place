@@ -276,7 +276,8 @@ public class Dolphin : MonoBehaviour
 
     private void MoveDolphin()
     {
-        if (inWater) rb.AddForce(swimDirection * dolphinParameters.swimSpeed * swimMultiplier, ForceMode.Impulse);
+        if (inWater || swimMultiplier > localParameters.swimMultiplierFlyingThreshold)
+            rb.AddForce(swimDirection * dolphinParameters.swimSpeed * swimMultiplier, ForceMode.Impulse);
 
         rb.AddTorque(rollDirection * dolphinParameters.rollSpeed * rollMultiplier, ForceMode.VelocityChange);
 
@@ -297,9 +298,11 @@ public class Dolphin : MonoBehaviour
     private void UpdateCombo()
     {
         if (Time.time - timeLastComboEnd < comboCooldown) return;
+
         if (inWater && !sliding && Time.time - timeLastWaterEntry > comboExpiration) ResetCombo();
 
         if (twistInput > 0f && sliding) combo.tailslides++;
+
         if (twistInput > 0f && !sliding) combo.twists++;
 
         if (!inWater)

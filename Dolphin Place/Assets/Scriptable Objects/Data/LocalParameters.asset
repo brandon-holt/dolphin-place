@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd07a4a6a343b48e383096c04f512aec, type: 3}
   m_Name: LocalParameters
   m_EditorClassIdentifier: 
-  gameMode: 1
+  gameMode: 0
   setGameModeEvent: {fileID: 11400000, guid: 7bcadfe4f7cc14552bed056533faf86f, type: 2}
   setLocalDolphinEvent: {fileID: 11400000, guid: 97ff3598228c64a91be7236b22625880, type: 2}
   controlModes: 0
@@ -20,7 +20,7 @@ MonoBehaviour:
   menuDolphin: {fileID: 0}
   cameraPositionSmoothTime: 0.1
   cameraAngleSmoothTime: 0.05
-  cameraOffset: {x: 25, y: 5}
+  cameraOffset: {x: 40, y: 5}
   trickCameraOffset: {x: 4, y: 4, z: 4}
   menuDolphinPosition: {x: 50, y: 90.4, z: -95}
   menuDolphinCamPosition: {x: 50, y: 90, z: -100}
@@ -34,3 +34,4 @@ MonoBehaviour:
   numberOfSplits: 4
   secondsPerSplit: 30
   ringForce: 60
+  swimMultiplierFlyingThreshold: 50

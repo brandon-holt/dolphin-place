@@ -255,7 +255,7 @@ MonoBehaviour:
     m_Value: 0
   bleedAmount:
     m_OverrideState: 1
-    m_Value: 1.5
+    m_Value: 2
   bleedDebug:
     m_OverrideState: 0
     m_Value: 0
@@ -323,7 +323,7 @@ MonoBehaviour:
     m_Value: 0.012
   _textureCutOff:
     m_OverrideState: 1
-    m_Value: 0.96
+    m_Value: 0.9
   stripes:
     m_OverrideState: 0
     m_Value: 0.01
