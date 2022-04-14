@@ -17,6 +17,7 @@ public class Dolphin : MonoBehaviour
     public SkinnedMeshRenderer skinRenderer;
     public Transform nameBar;
     public ParticleSystem particles;
+    public GameObject tailslideSplashPrefab;
     public string dolphinName;
     public Planet planet;
     public Combo combo;
@@ -336,7 +337,7 @@ public class Dolphin : MonoBehaviour
         rb.velocity *= .1f;
     }
 
-    public void WaterEntry()
+    public float WaterEntry()
     {
         inWater = true;
 
@@ -346,7 +347,9 @@ public class Dolphin : MonoBehaviour
 
         Vector3 velocity = rb.velocity;
 
-        if (Vector3.Angle(entry, velocity) < localParameters.niceEntryMaxAngle)
+        float entryAngle = Vector3.Angle(entry, velocity);
+
+        if (entryAngle < localParameters.niceEntryMaxAngle)
         {
             SetSwimMultiplier(swimMultiplier + localParameters.multiplierIncreaseNiceEntry);
 
@@ -358,6 +361,8 @@ public class Dolphin : MonoBehaviour
 
             ResetCombo();
         }
+
+        return entryAngle;
     }
 
     public void WaterExit()
@@ -423,6 +428,8 @@ public class Dolphin : MonoBehaviour
     private int SetPositionRotationWaterTailslide(int direction = 0)
     {
         Vector3 upwards = transform.position - planet.transform.position;
+
+        Instantiate(tailslideSplashPrefab, transform.position, Quaternion.LookRotation(upwards));
 
         Vector3 forwards = -Vector3.Cross(upwards, transform.rotation * sideVector);
 

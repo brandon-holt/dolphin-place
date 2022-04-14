@@ -19,6 +19,7 @@ public class LocalParameters : ScriptableObject
     public int numberOfSplits, secondsPerSplit;
     public float ringForce;
     public float swimMultiplierFlyingThreshold;
+    public float splashNormalizationConstant;
 
     public void SetViewMode(float value)
     {

@@ -24,7 +24,7 @@ public class AltitudeBar : MonoBehaviour
         float distanceFromPlanet = (lp.localDolphin.transform.position
         - currentPlanet.transform.position).magnitude;
 
-        float height = bar.rect.height * distanceFromPlanet / currentCalibrationDistance;
+        float height = bar.rect.height * Mathf.Clamp01(distanceFromPlanet / currentCalibrationDistance);
 
         Vector3 position = planetIcon.localPosition;
 
@@ -51,5 +51,14 @@ public class AltitudeBar : MonoBehaviour
         }
 
         currentCalibrationDistance = minDistance;
+    }
+
+    public void ResetPlanet()
+    {
+        if (lp.localDolphin == null) return;
+
+        Planet planet = lp.localDolphin.planet;
+
+        lp.localDolphin.transform.position = 1.1f * planet.waterRadius * Vector3.up + planet.transform.position;
     }
 }

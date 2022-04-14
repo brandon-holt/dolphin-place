@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd07a4a6a343b48e383096c04f512aec, type: 3}
   m_Name: LocalParameters
   m_EditorClassIdentifier: 
-  gameMode: 0
+  gameMode: 1
   setGameModeEvent: {fileID: 11400000, guid: 7bcadfe4f7cc14552bed056533faf86f, type: 2}
   setLocalDolphinEvent: {fileID: 11400000, guid: 97ff3598228c64a91be7236b22625880, type: 2}
   controlModes: 0
@@ -35,3 +35,4 @@ MonoBehaviour:
   secondsPerSplit: 30
   ringForce: 60
   swimMultiplierFlyingThreshold: 50
+  splashNormalizationConstant: 200

@@ -134,6 +134,7 @@ MonoBehaviour:
   skinRenderer: {fileID: 4074927898383730756}
   nameBar: {fileID: 6666928647691232024}
   particles: {fileID: 6225415762052696346}
+  tailslideSplashPrefab: {fileID: 1722726733478836, guid: 62d084a01fbc64d6eb17cda3a4540613, type: 3}
   dolphinName: 
   planet: {fileID: 0}
   splits: 
