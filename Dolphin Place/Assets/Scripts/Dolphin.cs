@@ -212,15 +212,24 @@ public class Dolphin : MonoBehaviour
         if (localParameters.gameMode == LocalParameters.GameModes.Multiplayer) UpdateNamebar();
     }
 
+    public void SetInputs(Vector2 input2D, Vector2 input3D, float twistInput)
+    {
+        this.input2D = input2D;
+
+        this.input3D = input3D;
+
+        this.twistInput = twistInput;
+    }
+
     private void GetInputs()
     {
-        twistInput = inputActionTwist.ReadValue<float>();
+#if !UNITY_IOS && !UNITY_ANDROID
+        SetInputs(inputAction2D.ReadValue<Vector2>(), 
+        inputAction3D.ReadValue<Vector2>(), 
+        inputActionTwist.ReadValue<float>());
+#endif
 
         if (twistInput != 0f) TryTailslide();
-
-        input2D = inputAction2D.ReadValue<Vector2>();
-
-        input3D = inputAction3D.ReadValue<Vector2>();
 
         swimming = input2D.y > 0f && inWater;
 
@@ -400,7 +409,7 @@ public class Dolphin : MonoBehaviour
 
         float currentVelocity = 0f;
 
-        while (inputActionTwist.IsPressed() && speed > 0f)
+        while (twistInput > 0f && speed > 0f)
         {
             transform.position += direction * (transform.rotation * forwardVector).normalized * Time.fixedDeltaTime * speed;
 
